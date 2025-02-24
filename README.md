@@ -56,32 +56,14 @@ The [arithmetic mean][arithmetic-mean] is defined as
 
 <!-- /.intro -->
 
-<section class="installation">
 
-## Installation
-
-```bash
-npm install @stdlib/stats-base-dnanmeanpn
-```
-
-Alternatively,
-
--   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
--   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
--   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
-
-The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
-
-To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
-
-</section>
 
 <section class="usage">
 
 ## Usage
 
 ```javascript
-var dnanmeanpn = require( '@stdlib/stats-base-dnanmeanpn' );
+import dnanmeanpn from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dnanmeanpn@deno/mod.js';
 ```
 
 #### dnanmeanpn( N, x, strideX )
@@ -89,7 +71,7 @@ var dnanmeanpn = require( '@stdlib/stats-base-dnanmeanpn' );
 Computes the [arithmetic mean][arithmetic-mean] of a double-precision floating-point strided array `x`, ignoring `NaN` values and using a two-pass error correction algorithm.
 
 ```javascript
-var Float64Array = require( '@stdlib/array-float64' );
+import Float64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-float64@deno/mod.js';
 
 var x = new Float64Array( [ 1.0, -2.0, NaN, 2.0 ] );
 
@@ -108,7 +90,7 @@ The `N` and stride parameters determine which elements in the strided array are 
 <!-- eslint-disable max-len -->
 
 ```javascript
-var Float64Array = require( '@stdlib/array-float64' );
+import Float64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-float64@deno/mod.js';
 
 var x = new Float64Array( [ 1.0, 2.0, 2.0, -7.0, -2.0, 3.0, 4.0, 2.0, NaN, NaN ] );
 
@@ -121,7 +103,7 @@ Note that indexing is relative to the first index. To introduce an offset, use [
 <!-- eslint-disable stdlib/capitalized-comments, max-len -->
 
 ```javascript
-var Float64Array = require( '@stdlib/array-float64' );
+import Float64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-float64@deno/mod.js';
 
 var x0 = new Float64Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ] );
 var x1 = new Float64Array( x0.buffer, x0.BYTES_PER_ELEMENT*1 ); // start at 2nd element
@@ -135,7 +117,7 @@ var v = dnanmeanpn( 5, x1, 2 );
 Computes the [arithmetic mean][arithmetic-mean] of a double-precision floating-point strided array, ignoring `NaN` values and using a two-pass error correction algorithm and alternative indexing semantics.
 
 ```javascript
-var Float64Array = require( '@stdlib/array-float64' );
+import Float64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-float64@deno/mod.js';
 
 var x = new Float64Array( [ 1.0, -2.0, NaN, 2.0 ] );
 
@@ -152,7 +134,7 @@ While [`typed array`][mdn-typed-array] views mandate a view offset based on the 
 <!-- eslint-disable max-len -->
 
 ```javascript
-var Float64Array = require( '@stdlib/array-float64' );
+import Float64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-float64@deno/mod.js';
 
 var x = new Float64Array( [ 2.0, 1.0, 2.0, -2.0, -2.0, 2.0, 3.0, 4.0, NaN, NaN ] );
 
@@ -182,10 +164,10 @@ var v = dnanmeanpn.ndarray( 5, x, 2, 1 );
 <!-- eslint no-undef: "error" -->
 
 ```javascript
-var randu = require( '@stdlib/random-base-randu' );
-var round = require( '@stdlib/math-base-special-round' );
-var Float64Array = require( '@stdlib/array-float64' );
-var dnanmeanpn = require( '@stdlib/stats-base-dnanmeanpn' );
+import randu from 'https://cdn.jsdelivr.net/gh/stdlib-js/random-base-randu@deno/mod.js';
+import round from 'https://cdn.jsdelivr.net/gh/stdlib-js/math-base-special-round@deno/mod.js';
+import Float64Array from 'https://cdn.jsdelivr.net/gh/stdlib-js/array-float64@deno/mod.js';
+import dnanmeanpn from 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dnanmeanpn@deno/mod.js';
 
 var x;
 var i;
@@ -210,120 +192,7 @@ console.log( v );
 
 <!-- C interface documentation. -->
 
-* * *
 
-<section class="c">
-
-## C APIs
-
-<!-- Section to include introductory text. Make sure to keep an empty line after the intro `section` element and another before the `/section` close. -->
-
-<section class="intro">
-
-</section>
-
-<!-- /.intro -->
-
-<!-- C usage documentation. -->
-
-<section class="usage">
-
-### Usage
-
-```c
-#include "stdlib/stats/base/dnanmeanpn.h"
-```
-
-#### stdlib_strided_dnanmeanpn( N, \*X, strideX )
-
-Computes arithmetic mean of a double-precision floating-point strided array, ignoring `NaN` values and using a two-pass error correction algorithm.
-
-```c
-const double x[] = { 1.0, 2.0, 0.0/0.0, 3.0, 0.0/0.0, 4.0, 5.0, 6.0, 0.0/0.0, 7.0, 8.0, 0.0/0.0 };
-
-double v = stdlib_strided_dnanmeanpn( 6, x, 2 );
-// returns ~4.6667
-```
-
-The function accepts the following arguments:
-
--   **N**: `[in] CBLAS_INT` number of indexed elements.
--   **X**: `[in] double*` input array.
--   **strideX**: `[in] CBLAS_INT` stride length for `X`.
-
-```c
-double stdlib_strided_dnanmeanpn( const CBLAS_INT N, const double *X, const CBLAS_INT strideX );
-```
-
-#### stdlib_strided_dnanmeanpn_ndarray( N, \*X, strideX, offsetX )
-
-Computes the aithmetic mean of a double-precision floating-point strided array, ignoring `NaN` values and using a two-pass error correction algorithm and alternative indexing semantics.
-
-```c
-const double x[] = { 1.0, 2.0, 0.0/0.0, 3.0, 0.0/0.0, 4.0, 5.0, 6.0, 0.0/0.0, 7.0, 8.0, 0.0/0.0 };
-
-double v = stdlib_strided_dnanmeanpn( 6, x, 2, 0 );
-// returns ~4.6667
-```
-
-The function accepts the following arguments:
-
--   **N**: `[in] CBLAS_INT` number of indexed elements.
--   **X**: `[in] double*` input array.
--   **strideX**: `[in] CBLAS_INT` stride length for `X`.
--   **offsetX**: `[in] CBLAS_INT` starting index for `X`.
-
-```c
-double stdlib_strided_dnanmeanpn_ndarray( const CBLAS_INT N, const double *X, const CBLAS_INT strideX, const CBLAS_INT offsetX );
-```
-
-</section>
-
-<!-- /.usage -->
-
-<!-- C API usage notes. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
-
-<section class="notes">
-
-</section>
-
-<!-- /.notes -->
-
-<!-- C API usage examples. -->
-
-<section class="examples">
-
-### Examples
-
-```c
-#include "stdlib/stats/base/dnanmeanpn.h"
-#include <stdio.h>
-
-int main( void ) {
-    // Create a strided array:
-    const double x[] = { 1.0, 2.0, 0.0/0.0, 3.0, 0.0/0.0, 4.0, 5.0, 6.0, 0.0/0.0, 7.0, 8.0, 0.0/0.0 };
-
-    // Specify the number of elements:
-    const int N = 6;
-
-    // Specify the stride length:
-    const int strideX = 2;
-
-    // Compute the arithmetic mean:
-    double v = stdlib_strided_dnanmeanpn( N, x, strideX );
-
-    // Print the result:
-    printf( "mean: %lf\n", v );
-}
-```
-
-</section>
-
-<!-- /.examples -->
-
-</section>
-
-<!-- /.c -->
 
 <section class="references">
 
@@ -362,7 +231,7 @@ int main( void ) {
 
 ## Notice
 
-This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+This package is part of [stdlib][stdlib], a standard library with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
 
 For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
 
@@ -427,7 +296,7 @@ Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
 
 [arithmetic-mean]: https://en.wikipedia.org/wiki/Arithmetic_mean
 
-[@stdlib/array/float64]: https://github.com/stdlib-js/array-float64
+[@stdlib/array/float64]: https://github.com/stdlib-js/array-float64/tree/deno
 
 [mdn-typed-array]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray
 
@@ -437,13 +306,13 @@ Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
 
 <!-- <related-links> -->
 
-[@stdlib/stats/base/dmeanpn]: https://github.com/stdlib-js/stats-base-dmeanpn
+[@stdlib/stats/base/dmeanpn]: https://github.com/stdlib-js/stats-base-dmeanpn/tree/deno
 
-[@stdlib/stats/strided/dnanmean]: https://github.com/stdlib-js/stats-strided-dnanmean
+[@stdlib/stats/strided/dnanmean]: https://github.com/stdlib-js/stats-strided-dnanmean/tree/deno
 
-[@stdlib/stats/base/nanmeanpn]: https://github.com/stdlib-js/stats-base-nanmeanpn
+[@stdlib/stats/base/nanmeanpn]: https://github.com/stdlib-js/stats-base-nanmeanpn/tree/deno
 
-[@stdlib/stats/base/snanmeanpn]: https://github.com/stdlib-js/stats-base-snanmeanpn
+[@stdlib/stats/base/snanmeanpn]: https://github.com/stdlib-js/stats-base-snanmeanpn/tree/deno
 
 <!-- </related-links> -->
 
